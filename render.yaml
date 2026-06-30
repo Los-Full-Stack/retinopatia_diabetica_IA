@@ -3,7 +3,7 @@ services:
     name: retinaai
     env: python
     plan: free
-    buildCommand: pip install -r requirements-render.txt
+    buildCommand: pip install --index-url https://download.pytorch.org/whl/cpu torch torchvision && pip install -r requirements-render.txt
     startCommand: uvicorn webapp.main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
