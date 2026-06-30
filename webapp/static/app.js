@@ -419,7 +419,7 @@ function bindEvents() {
       renderResult(payload, file.name);
     } catch (error) {
       $("resultEmpty").hidden = false;
-      $("resultEmpty").textContent = error.message;
+      $("resultEmpty").textContent = `No se pudo conectar con el analisis. Verifica que el servicio de Render este desplegado y vuelve a intentar. Detalle: ${error.message}`;
       $("resultContent").hidden = true;
     }
   });
