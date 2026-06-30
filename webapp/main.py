@@ -1,4 +1,5 @@
 from io import BytesIO
+import os
 from pathlib import Path
 
 from fastapi import FastAPI, File, HTTPException, UploadFile
@@ -13,6 +14,13 @@ from src.inference import RetinaPredictor
 APP_DIR = Path(__file__).resolve().parent
 STATIC_DIR = APP_DIR / "static"
 MODEL_PATH = MODELS_DIR / "best_retina_model.pth"
+ENABLE_GRADCAM = os.environ.get("RETINAAI_ENABLE_GRADCAM", "false").strip().lower() in {
+    "1",
+    "true",
+    "yes",
+    "si",
+    "sí",
+}
 
 app = FastAPI(
     title="RetinaAI",
@@ -67,7 +75,7 @@ async def predict(file: UploadFile = File(...)):
         raise HTTPException(status_code=400, detail=f"No se pudo leer la imagen: {exc}") from exc
 
     predictor = get_predictor()
-    result = predictor.predict(image, include_explanation=True)
+    result = predictor.predict(image, include_explanation=ENABLE_GRADCAM)
     return {
         "filename": file.filename,
         "result": result,
