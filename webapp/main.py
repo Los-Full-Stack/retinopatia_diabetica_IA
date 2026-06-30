@@ -1,6 +1,7 @@
 from io import BytesIO
 import os
 from pathlib import Path
+from typing import Any
 
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.responses import FileResponse
@@ -8,7 +9,6 @@ from fastapi.staticfiles import StaticFiles
 from PIL import Image
 
 from config.config import MODELS_DIR
-from src.inference import RetinaPredictor
 
 
 APP_DIR = Path(__file__).resolve().parent
@@ -29,10 +29,10 @@ app = FastAPI(
 )
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
-_predictor: RetinaPredictor | None = None
+_predictor: Any | None = None
 
 
-def get_predictor() -> RetinaPredictor:
+def get_predictor() -> Any:
     global _predictor
     if not MODEL_PATH.exists():
         raise HTTPException(
@@ -40,6 +40,8 @@ def get_predictor() -> RetinaPredictor:
             detail=f"No se encontro el modelo requerido: {MODEL_PATH}",
         )
     if _predictor is None:
+        from src.inference import RetinaPredictor
+
         _predictor = RetinaPredictor(checkpoint_path=MODEL_PATH)
     return _predictor
 
