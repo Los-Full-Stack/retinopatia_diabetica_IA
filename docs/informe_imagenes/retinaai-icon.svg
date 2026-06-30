@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="RetinaAI">
+  <defs>
+    <linearGradient id="markBg" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1d4ed8"/>
+      <stop offset="1" stop-color="#075985"/>
+    </linearGradient>
+    <linearGradient id="retina" x1="21" y1="21" x2="43" y2="43" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e0f2fe"/>
+      <stop offset="1" stop-color="#38bdf8"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="64" height="64" rx="17" fill="url(#markBg)"/>
+  <path d="M10.5 32c5.7-9 13-13.5 21.5-13.5S47.8 23 53.5 32C47.8 41 40.5 45.5 32 45.5S16.2 41 10.5 32Z" fill="rgba(255,255,255,.14)" stroke="#ffffff" stroke-width="4" stroke-linejoin="round"/>
+  <circle cx="32" cy="32" r="11.5" fill="url(#retina)"/>
+  <circle cx="32" cy="32" r="5.8" fill="#0f172a"/>
+  <circle cx="29.3" cy="28.7" r="2.1" fill="#ffffff"/>
+  <path d="M25.5 35.8c3.7 2.8 8.4 2.8 12.8.1" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity=".78"/>
+  <path d="M41.3 25.2c2.1 1.7 3.8 3.9 5.1 6.8-1.4 2.9-3.1 5.2-5.3 6.9" fill="none" stroke="#bae6fd" stroke-width="2.2" stroke-linecap="round" opacity=".95"/>
+</svg>

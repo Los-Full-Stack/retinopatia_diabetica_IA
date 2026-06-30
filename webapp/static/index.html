@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RetinaAI - Acceso</title>
+  <link rel="icon" href="/static/retinaai-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="login-page">
+  <main class="landing">
+    <nav class="landing-nav">
+      <div class="brand-lockup">
+        <img class="brand-icon" src="/static/retinaai-icon.svg?v=3" width="42" height="42" alt="">
+        <div>
+          <h1>RETINAAI</h1>
+          <p>Evaluacion retinal</p>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="hero-kicker">Plataforma optometrica asistida</span>
+        <h2>Evaluacion retinal clara, segura y centrada en el paciente.</h2>
+        <p>
+          Accede al panel clinico para registrar pacientes, revisar imagenes retinales y obtener una
+          orientacion de apoyo con control de calidad visual.
+        </p>
+        <div class="hero-actions">
+          <button type="button" onclick="document.getElementById('username').focus()">Entrar al portal</button>
+        </div>
+      </div>
+
+      <form id="loginForm" class="auth-card">
+        <img class="auth-icon" src="/static/retinaai-icon.svg?v=3" width="52" height="52" alt="">
+        <h2>Acceso profesional</h2>
+        <p>Ingresa para continuar con la evaluacion retinal asistida.</p>
+        <label>Usuario<input id="username" autocomplete="username" value="admin"></label>
+        <label>Clave<input id="password" type="password" autocomplete="current-password" value="admin123"></label>
+        <button type="submit">Ingresar al portal</button>
+        <div id="loginError" class="form-error" hidden>Credenciales invalidas.</div>
+      </form>
+    </section>
+  </main>
+
+  <script src="/static/app.js?v=7"></script>
+</body>
+</html>

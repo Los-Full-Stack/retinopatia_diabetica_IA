@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RetinaAI - Dashboard</title>
+  <link rel="icon" href="/static/retinaai-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="dashboard-page">
+  <main id="appView" class="portal">
+    <header class="app-navbar">
+      <div class="nav-inner">
+        <div class="side-brand">
+          <img class="brand-icon small" src="/static/retinaai-icon.svg?v=3" width="34" height="34" alt="">
+          <div>
+            <h1>RETINAAI</h1>
+            <p>Evaluacion retinal</p>
+          </div>
+        </div>
+
+        <nav class="tabs top-tabs">
+          <button class="tab active" data-tab="patients">Pacientes</button>
+          <button class="tab" data-tab="diagnosis">Evaluacion</button>
+          <button class="tab" data-tab="history">Historial</button>
+        </nav>
+
+        <div class="nav-profile">
+          <span id="healthPill" class="status-pill">Verificando sistema...</span>
+          <div class="doctor-chip">
+            <div class="avatar">OP</div>
+            <div>
+              <strong>Optometria</strong>
+              <span>Sesion profesional</span>
+            </div>
+          </div>
+          <button id="logoutBtn" class="logout-btn">Salir</button>
+        </div>
+      </div>
+    </header>
+
+    <section class="workspace">
+      <section class="premium-hero compact-hero">
+        <div>
+          <span class="eyebrow">Consulta retinal</span>
+          <h1>Evaluacion asistida para optometria</h1>
+        </div>
+        <div class="hero-status-card compact-status">
+          <span>Paciente activo</span>
+          <strong id="activePatientBadge" class="patient-badge">Sin paciente</strong>
+        </div>
+      </section>
+
+      <section id="patients" class="tab-panel active">
+        <div class="two-col">
+          <form id="patientForm" class="panel">
+            <div class="panel-heading">
+              <span>Paciente</span>
+              <h2>Nuevo paciente</h2>
+            </div>
+            <label>Nombre completo<input id="patientName" required></label>
+            <label>Identificacion<input id="patientIdentifier"></label>
+            <div class="inline-fields">
+              <label>Edad<input id="patientAge" type="number" min="0" max="120" value="45"></label>
+              <label>Sexo
+                <select id="patientSex">
+                  <option>No especificado</option>
+                  <option>Femenino</option>
+                  <option>Masculino</option>
+                </select>
+              </label>
+            </div>
+            <label>Notas clinicas<textarea id="patientNotes" rows="4"></textarea></label>
+            <button type="submit">Registrar paciente</button>
+          </form>
+
+          <section class="panel">
+            <div class="panel-heading">
+              <span>Seleccion</span>
+              <h2>Paciente seleccionado</h2>
+            </div>
+            <select id="patientSelect"></select>
+            <div id="patientCard" class="patient-card empty">Crea o selecciona un paciente.</div>
+          </section>
+        </div>
+      </section>
+
+      <section id="diagnosis" class="tab-panel">
+        <div class="diagnosis-grid">
+          <section class="panel image-panel">
+            <div class="panel-heading compact">
+              <span>Evaluacion</span>
+              <h2>Imagen retinal</h2>
+            </div>
+            <label class="upload-box image-upload">
+              <input id="imageInput" type="file" accept="image/png,image/jpeg">
+              <div id="imageComparison" class="image-comparison" hidden>
+                <figure>
+                  <figcaption>Original</figcaption>
+                  <img id="previewImage" alt="Imagen retinal original">
+                </figure>
+                <figure id="gradcamFigure" hidden>
+                  <figcaption>Mapa de atencion</figcaption>
+                  <img id="gradcamImage" alt="Mapa de atencion del modelo">
+                </figure>
+              </div>
+              <div id="imagePlaceholder" class="placeholder">
+                <strong>Selecciona una imagen retinal</strong>
+                <small>La vista previa aparecera aqui para revisar la captura antes del resultado.</small>
+              </div>
+            </label>
+          </section>
+
+          <section class="panel result-panel">
+            <div class="panel-heading compact">
+              <span>Orientacion</span>
+              <h2>Resultado asistido</h2>
+            </div>
+            <div id="resultEmpty" class="placeholder">Carga una imagen para ver la orientacion del sistema.</div>
+            <div id="resultContent" hidden></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="history" class="tab-panel">
+        <section class="panel">
+          <div class="section-heading">
+            <div>
+              <span class="panel-tag">Seguimiento</span>
+              <h2>Historial local</h2>
+              <p>Resultados guardados en este navegador para revisar controles del paciente.</p>
+            </div>
+            <button id="clearHistoryBtn" class="ghost-btn">Limpiar historial</button>
+          </div>
+          <div id="historyList" class="history-list"></div>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <script src="/static/app.js?v=7"></script>
+</body>
+</html>

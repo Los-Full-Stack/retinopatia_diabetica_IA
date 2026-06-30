@@ -1,0 +1,1138 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Infografía RetinaAI</title>
+  <style>
+    :root {
+      --ink: #102033;
+      --muted: #5d7088;
+      --blue: #1d4ed8;
+      --cyan: #0891b2;
+      --teal: #0f766e;
+      --green: #15803d;
+      --amber: #b45309;
+      --red: #b91c1c;
+      --bg: #eef5fb;
+      --paper: #ffffff;
+      --line: #d7e2ee;
+      --soft: #f6f9fc;
+      --shadow: 0 24px 70px rgba(20, 45, 75, .14);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 4%, rgba(37, 99, 235, .16), transparent 24rem),
+        radial-gradient(circle at 90% 10%, rgba(8, 145, 178, .14), transparent 26rem),
+        linear-gradient(180deg, #f8fbff 0, var(--bg) 100%);
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 52px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 22px;
+      align-items: stretch;
+      margin-bottom: 18px;
+    }
+
+    .hero-main {
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      padding: 34px;
+      color: white;
+      background:
+        linear-gradient(135deg, rgba(0, 53, 95, .98), rgba(2, 103, 131, .92)),
+        radial-gradient(circle at 82% 24%, rgba(149, 222, 255, .28), transparent 18rem);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-main::after {
+      content: "";
+      position: absolute;
+      right: -80px;
+      bottom: -80px;
+      width: 260px;
+      height: 260px;
+      border: 34px solid rgba(255, 255, 255, .11);
+      border-radius: 999px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 26px;
+    }
+
+    .brand img {
+      width: 54px;
+      height: 54px;
+      border-radius: 15px;
+      box-shadow: 0 16px 28px rgba(0, 0, 0, .16);
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 25px;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .brand span {
+      display: block;
+      margin-top: 5px;
+      color: #bde7ff;
+      font-size: 12px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.18);
+      color: #c7f2ff;
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: .08em;
+    }
+
+    h1 {
+      max-width: 780px;
+      margin: 18px 0 14px;
+      font-size: clamp(42px, 6vw, 76px);
+      line-height: .98;
+      letter-spacing: 0;
+    }
+
+    .hero-main p {
+      max-width: 760px;
+      margin: 0;
+      color: #e3f3ff;
+      font-size: 18px;
+      line-height: 1.55;
+      font-weight: 600;
+    }
+
+    .hero-side {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 24px;
+      background: rgba(255,255,255,.9);
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 14px;
+    }
+
+    .hero-side h2 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 14px 34px rgba(20, 45, 75, .08);
+    }
+
+    .metric {
+      min-height: 142px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metric::after {
+      content: "";
+      position: absolute;
+      width: 88px;
+      height: 88px;
+      right: -28px;
+      bottom: -32px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, .09);
+    }
+
+    .metric span,
+    .section-kicker {
+      color: var(--cyan);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-weight: 950;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 10px;
+      font-size: 34px;
+      line-height: 1;
+      color: var(--ink);
+    }
+
+    .metric p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.35;
+      font-weight: 650;
+      font-size: 13px;
+    }
+
+    .section {
+      margin-top: 18px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: end;
+      margin: 26px 0 12px;
+    }
+
+    .section-head h2 {
+      margin: 5px 0 0;
+      font-size: clamp(26px, 3vw, 38px);
+      line-height: 1.08;
+    }
+
+    .section-head p {
+      max-width: 560px;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.45;
+      font-weight: 600;
+    }
+
+    .problem-card {
+      display: grid;
+      grid-template-columns: 62px 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .icon-badge {
+      width: 52px;
+      height: 52px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color: white;
+      font-size: 25px;
+      font-weight: 950;
+    }
+
+    .problem-card h3,
+    .stage h3,
+    .flow-step h3 {
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .problem-card p,
+    .stage p,
+    .flow-step p,
+    .note p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.45;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    .crisp-map {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .crisp-core {
+      min-height: 220px;
+      border-radius: 22px;
+      padding: 26px;
+      color: white;
+      background:
+        radial-gradient(circle at 82% 24%, rgba(255,255,255,.22), transparent 15rem),
+        conic-gradient(from 20deg, #1d4ed8, #0891b2, #0f766e, #b45309, #1d4ed8);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .crisp-core div {
+      width: min(760px, 100%);
+      min-height: 138px;
+      border-radius: 22px;
+      display: grid;
+      align-content: center;
+      padding: 24px 30px;
+      background: rgba(15, 23, 42, .72);
+      border: 1px solid rgba(255,255,255,.28);
+      backdrop-filter: blur(8px);
+    }
+
+    .crisp-core strong {
+      display: block;
+      font-size: clamp(34px, 5vw, 56px);
+      line-height: 1;
+    }
+
+    .crisp-core span {
+      display: block;
+      margin-top: 9px;
+      color: #c7f2ff;
+      font-weight: 850;
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .phase-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .phase-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      gap: 16px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--paper);
+      box-shadow: 0 14px 34px rgba(20, 45, 75, .07);
+      overflow: hidden;
+    }
+
+    .phase-card::before {
+      content: "";
+      position: absolute;
+      left: 54px;
+      top: 76px;
+      bottom: -18px;
+      width: 2px;
+      background: #dbeafe;
+    }
+
+    .phase-card:last-child::before {
+      display: none;
+    }
+
+    .phase-number {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 24px;
+      font-weight: 950;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      box-shadow: 0 14px 26px rgba(37, 99, 235, .18);
+    }
+
+    .phase-card h3 {
+      margin: 0 0 7px;
+      font-size: 21px;
+      display: flex;
+      align-items: center;
+    }
+
+    .phase-lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14.5px;
+      line-height: 1.5;
+      font-weight: 600;
+    }
+
+    .phase-columns {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .phase-box {
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 12px;
+      background: #f8fafc;
+    }
+
+    .phase-box span {
+      display: block;
+      color: var(--cyan);
+      font-size: 10px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 6px;
+    }
+
+    .phase-box p {
+      margin: 0;
+      color: #475569;
+      font-size: 12.5px;
+      line-height: 1.42;
+      font-weight: 650;
+    }
+
+    .flow-step {
+      position: relative;
+      padding: 18px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+
+    .flow-step .num {
+      display: inline-grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      background: #e0f2fe;
+      color: #075985;
+      font-weight: 950;
+      margin-bottom: 12px;
+    }
+
+    .stage {
+      border-left: 5px solid var(--blue);
+    }
+
+    .stage:nth-child(2) { border-left-color: var(--cyan); }
+    .stage:nth-child(3) { border-left-color: var(--teal); }
+    .stage:nth-child(4) { border-left-color: var(--amber); }
+    .stage:nth-child(5) { border-left-color: var(--red); }
+
+    .stage .grade {
+      display: inline-flex;
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: #f1f5f9;
+      color: #334155;
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .chart-card {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .chart-card .chart-copy {
+      padding: 20px 20px 12px;
+    }
+
+    .chart-card img {
+      width: 100%;
+      display: block;
+      border-top: 1px solid var(--line);
+      background: white;
+    }
+
+    .visual-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .figure-card {
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .figure-card.wide {
+      grid-column: 1 / -1;
+    }
+
+    .figure-card .caption {
+      padding: 16px 18px 12px;
+    }
+
+    .figure-card h3 {
+      margin: 4px 0 0;
+      font-size: 18px;
+    }
+
+    .figure-card p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+      font-weight: 600;
+    }
+
+    .figure-card img {
+      width: 100%;
+      display: block;
+      border-top: 1px solid var(--line);
+      background: white;
+    }
+
+    .bars {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .bar {
+      display: grid;
+      grid-template-columns: 140px 1fr 64px;
+      gap: 10px;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .track {
+      height: 12px;
+      border-radius: 999px;
+      background: #e2e8f0;
+      overflow: hidden;
+    }
+
+    .fill {
+      height: 100%;
+      width: var(--value);
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      border-radius: inherit;
+    }
+
+    .policy {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .policy-main {
+      background: linear-gradient(135deg, #0f3b61, #04748d);
+      color: white;
+      border: 0;
+    }
+
+    .policy-main .section-kicker,
+    .policy-main p {
+      color: #c9f2ff;
+    }
+
+    .policy-main strong {
+      display: block;
+      margin: 12px 0;
+      font-size: 54px;
+      line-height: 1;
+    }
+
+    .note {
+      background: #fff7ed;
+      border-color: #fed7aa;
+    }
+
+    .footer {
+      margin-top: 18px;
+      padding: 20px;
+      border-radius: 18px;
+      background: #0f172a;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .footer p {
+      margin: 0;
+      color: #cbd5e1;
+      line-height: 1.45;
+    }
+
+    .print-btn {
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 16px;
+      background: #2563eb;
+      color: white;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .grid.cols-4,
+      .grid.cols-3,
+      .grid.cols-2,
+      .pipeline,
+      .policy,
+      .crisp-map,
+      .phase-grid,
+      .visual-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .hero-main {
+        padding: 26px;
+      }
+
+      .bar {
+        grid-template-columns: 1fr;
+      }
+
+      .figure-card.wide {
+        grid-column: auto;
+      }
+
+      .phase-card {
+        grid-template-columns: 1fr;
+      }
+
+      .phase-card::before {
+        display: none;
+      }
+
+      .phase-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      body { background: white; }
+      .page { width: 100%; padding: 0; }
+      .card, .hero-main, .hero-side, .footer { box-shadow: none; }
+      .print-btn { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="hero-main">
+        <div class="brand">
+          <img src="informe_imagenes/retinaai-icon.svg" alt="RetinaAI">
+          <div>
+            <strong>RETINAAI</strong>
+            <span>Evaluación retinal asistida</span>
+          </div>
+        </div>
+        <span class="eyebrow">Construccion de software | 2026</span>
+        <h1>IA para apoyar la detección de retinopatía diabética</h1>
+        <p>
+          Sistema web basado en aprendizaje profundo que analiza imágenes de fondo de ojo,
+          estima el posible grado de retinopatía diabética y aplica una política de seguridad
+          antes de aceptar automáticamente una orientación.
+        </p>
+      </div>
+
+      <aside class="hero-side">
+        <h2>Resumen del proyecto</h2>
+        <p>
+          RetinaAI integra PyTorch, FastAPI, HTML/CSS/JS, control de calidad de imagen y
+          visualización Grad-CAM para funcionar como herramienta de apoyo optométrico.
+        </p>
+        <div class="tag-list">
+          <span class="tag">PyTorch</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">EfficientNet</span>
+          <span class="tag">Grad-CAM</span>
+          <span class="tag">APTOS 2019</span>
+          <span class="tag">CRISP-ML(Q)</span>
+        </div>
+      </aside>
+    </section>
+
+    <section class="grid cols-4">
+      <article class="card metric">
+        <span>Accuracy general</span>
+        <strong>79.09%</strong>
+        <p>Rendimiento global del checkpoint final sobre el conjunto local de prueba.</p>
+      </article>
+      <article class="card metric">
+        <span>Kappa cuadratico</span>
+        <strong>86.16%</strong>
+        <p>Evalúa el orden clínico de los errores entre grados de severidad.</p>
+      </article>
+      <article class="card metric">
+        <span>ROC AUC multiclase</span>
+        <strong>92.01%</strong>
+        <p>Capacidad de separacion general entre las cinco clases del problema.</p>
+      </article>
+      <article class="card metric">
+        <span>Accuracy aceptada</span>
+        <strong>97.72%</strong>
+        <p>Exactitud en los casos que pasan la política de aceptación automática.</p>
+      </article>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">Problema y valor</span>
+          <h2>Una necesidad clinica con impacto social</h2>
+        </div>
+        <p>
+          El informe plantea la retinopatía diabética como una causa prevenible de pérdida visual,
+          especialmente crítica donde hay pocos especialistas y acceso limitado a evaluación retinal.
+        </p>
+      </div>
+      <div class="grid cols-3">
+        <article class="card problem-card">
+          <div class="icon-badge">1</div>
+          <div>
+            <h3>Detección tardía</h3>
+            <p>Muchos casos se identifican en etapas avanzadas, reduciendo oportunidades de tratamiento oportuno.</p>
+          </div>
+        </article>
+        <article class="card problem-card">
+          <div class="icon-badge">2</div>
+          <div>
+            <h3>Brecha de especialistas</h3>
+            <p>Centros de salud rurales o de difícil acceso no siempre cuentan con evaluación oftalmológica inmediata.</p>
+          </div>
+        </article>
+        <article class="card problem-card">
+          <div class="icon-badge">3</div>
+          <div>
+            <h3>Apoyo a priorizacion</h3>
+            <p>La IA puede orientar seguimiento, repetición de captura o derivación sin reemplazar el criterio profesional.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">Metodología CRISP-ML(Q)</span>
+          <h2>El proyecto se organiza como ciclo de calidad de ML</h2>
+        </div>
+        <p>CRISP-ML(Q) permite alinear el objetivo clínico, los datos, el entrenamiento, la evaluación, el despliegue y el mantenimiento del sistema bajo controles de calidad verificables.</p>
+      </div>
+      <div class="crisp-map">
+        <article class="crisp-core">
+          <div>
+            <strong>CRISP-ML(Q)</strong>
+            <span>Metodología iterativa para construir, validar, desplegar y mantener sistemas de machine learning con calidad.</span>
+          </div>
+        </article>
+        <div class="phase-grid">
+          <article class="phase-card">
+            <div class="phase-number">1</div>
+            <div>
+              <h3>Comprensión del negocio y de los datos</h3>
+              <p class="phase-lead">Alinea el propósito del sistema con una necesidad clínica concreta: apoyar la evaluación de retinopatía diabética y priorizar casos que requieren seguimiento o derivación.</p>
+              <div class="phase-columns">
+                <div class="phase-box"><span>Objetivo</span><p>Definir usuarios, alcance, problema clínico y utilidad esperada del sistema como apoyo optométrico.</p></div>
+                <div class="phase-box"><span>RetinaAI</span><p>Se trabaja con imágenes retinales APTOS 2019 y una clasificación multiclase de cinco grados.</p></div>
+                <div class="phase-box"><span>KPI / control</span><p>Accuracy, F1 macro, kappa, ROC AUC, error grande y cobertura aceptada por política de seguridad.</p></div>
+              </div>
+            </div>
+          </article>
+          <article class="phase-card">
+            <div class="phase-number">2</div>
+            <div>
+              <h3>Ingeniería y preparación de datos</h3>
+              <p class="phase-lead">Convierte las imágenes crudas en una base utilizable para aprendizaje profundo, cuidando calidad visual, etiquetas y balance entre grados clínicos.</p>
+              <div class="phase-columns">
+                <div class="phase-box"><span>Objetivo</span><p>Preparar la materia prima antes del entrenamiento, reduciendo ruido, variabilidad y sesgos.</p></div>
+                <div class="phase-box"><span>RetinaAI</span><p>Recorte, redimensionamiento, normalización, mejora de contraste, aumento de datos y revisión de distribución.</p></div>
+                <div class="phase-box"><span>Control</span><p>Verificar clases minoritarias, calidad de imagen, cobertura retinal, nitidez, contraste y consistencia de etiquetas.</p></div>
+              </div>
+            </div>
+          </article>
+          <article class="phase-card">
+            <div class="phase-number">3</div>
+            <div>
+              <h3>Ingeniería de modelos</h3>
+              <p class="phase-lead">Selecciona y entrena el modelo de clasificación retinal usando PyTorch y transferencia de aprendizaje sobre una arquitectura convolucional.</p>
+              <div class="phase-columns">
+                <div class="phase-box"><span>Objetivo</span><p>Construir un modelo capaz de reconocer patrones visuales asociados a grados de retinopatía diabética.</p></div>
+                <div class="phase-box"><span>RetinaAI</span><p>Checkpoint final entrenado con dataset original, EfficientNet/PyTorch y pesos guardados en `.pth`.</p></div>
+                <div class="phase-box"><span>Control QA</span><p>Ajuste de hiperparámetros, regularización, pesos de clase, parada temprana y vigilancia de sobreajuste.</p></div>
+              </div>
+            </div>
+          </article>
+          <article class="phase-card">
+            <div class="phase-number">4</div>
+            <div>
+              <h3>Evaluación del modelo</h3>
+              <p class="phase-lead">Prueba el modelo con datos independientes y analiza si su comportamiento es útil para el objetivo clínico, no solo si obtiene buen accuracy.</p>
+              <div class="phase-columns">
+                <div class="phase-box"><span>Objetivo</span><p>Validar precisión, robustez, errores clínicamente relevantes y desempeño por clase.</p></div>
+                <div class="phase-box"><span>RetinaAI</span><p>Accuracy 79.09%, kappa 86.16%, ROC AUC 92.01% y matriz de confusión sobre 550 imágenes.</p></div>
+                <div class="phase-box"><span>Explicabilidad</span><p>Grad-CAM se usa como mapa de atención para transparencia, no como diagnóstico definitivo.</p></div>
+              </div>
+            </div>
+          </article>
+          <article class="phase-card">
+            <div class="phase-number">5</div>
+            <div>
+              <h3>Despliegue</h3>
+              <p class="phase-lead">Integra el checkpoint validado en una aplicación web usable por el profesional, con flujo de paciente, carga de imagen, resultado asistido e historial.</p>
+              <div class="phase-columns">
+                <div class="phase-box"><span>Objetivo</span><p>Hacer consumible el modelo por usuarios finales mediante una interfaz clara y segura.</p></div>
+                <div class="phase-box"><span>RetinaAI</span><p>FastAPI, HTML/CSS/JS, login demo, gestión de pacientes, carga retinal, historial y descarga de reporte.</p></div>
+                <div class="phase-box"><span>Seguridad</span><p>Política accept/review/reject según confianza, margen top-2 y calidad de imagen.</p></div>
+              </div>
+            </div>
+          </article>
+          <article class="phase-card">
+            <div class="phase-number">6</div>
+            <div>
+              <h3>Supervisión y mantenimiento</h3>
+              <p class="phase-lead">Controla la degradación del modelo con monitoreo continuo, revisión humana y reentrenamiento cuando existan nuevos datos validados.</p>
+              <div class="phase-columns">
+                <div class="phase-box"><span>Objetivo</span><p>Mantener calidad y precisión cuando cambian imágenes, equipos, población o condiciones de captura.</p></div>
+                <div class="phase-box"><span>RetinaAI</span><p>Revisar casos rechazados, distribución de predicciones, calidad de imagen y señales de data drift.</p></div>
+                <div class="phase-box"><span>Mantenimiento</span><p>Reentrenar solo con imágenes locales validadas y comparar contra el test original antes de promover cambios.</p></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">Pipeline técnico</span>
+          <h2>Del dataset al despliegue web</h2>
+        </div>
+        <p>El flujo técnico materializa las fases de CRISP-ML(Q) dentro del sistema RetinaAI.</p>
+      </div>
+      <div class="pipeline">
+        <article class="flow-step">
+          <span class="num">1</span>
+          <h3>Datos</h3>
+          <p>Imágenes retinales etiquetadas del dataset original APTOS 2019.</p>
+        </article>
+        <article class="flow-step">
+          <span class="num">2</span>
+          <h3>Preproceso</h3>
+          <p>Recorte, redimensionamiento, normalizacion y mejora de contraste.</p>
+        </article>
+        <article class="flow-step">
+          <span class="num">3</span>
+          <h3>Modelo</h3>
+          <p>Red convolucional con transferencia de aprendizaje implementada en PyTorch.</p>
+        </article>
+        <article class="flow-step">
+          <span class="num">4</span>
+          <h3>Evaluación</h3>
+          <p>Matriz de confusión, F1 macro, kappa, ROC AUC y errores grandes.</p>
+        </article>
+        <article class="flow-step">
+          <span class="num">5</span>
+          <h3>Aplicacion</h3>
+          <p>FastAPI + HTML/CSS/JS para consulta, pacientes, resultados y reportes.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">Clasificación clínica</span>
+          <h2>Cinco niveles de severidad</h2>
+        </div>
+        <p>La interfaz final evita mostrar solo números y presenta el posible resultado como nombre clínico comprensible.</p>
+      </div>
+      <div class="grid cols-3">
+        <article class="card stage">
+          <span class="grade">Nivel 0</span>
+          <h3>Sin retinopatía</h3>
+          <p>No se observan signos de daño retinal asociados a retinopatía diabética.</p>
+        </article>
+        <article class="card stage">
+          <span class="grade">Nivel 1</span>
+          <h3>Leve</h3>
+          <p>Hallazgos iniciales; requiere seguimiento según criterio clínico.</p>
+        </article>
+        <article class="card stage">
+          <span class="grade">Nivel 2</span>
+          <h3>Moderada</h3>
+          <p>Caso referible para evaluación oftalmológica y confirmación.</p>
+        </article>
+        <article class="card stage">
+          <span class="grade">Nivel 3</span>
+          <h3>Severa</h3>
+          <p>Prioridad alta de revisión por riesgo de progresión visual.</p>
+        </article>
+        <article class="card stage">
+          <span class="grade">Nivel 4</span>
+          <h3>Proliferativa</h3>
+          <p>Prioridad alta de derivación especializada por severidad del cuadro.</p>
+        </article>
+        <article class="card note">
+          <span class="section-kicker">Uso responsable</span>
+          <h3>Apoyo, no diagnóstico definitivo</h3>
+          <p>Grad-CAM y la predicción del modelo aumentan transparencia, pero no sustituyen la evaluación profesional.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">Resultados</span>
+          <h2>Métricas principales del checkpoint final</h2>
+        </div>
+        <p>El modelo final fue entrenado con el dataset original, sin combinar datos externos en la versión consolidada.</p>
+      </div>
+      <div class="grid cols-2">
+        <article class="card">
+          <span class="section-kicker">Rendimiento global</span>
+          <h3>Medición multiclase</h3>
+          <div class="bars">
+            <div class="bar"><span>Accuracy</span><div class="track"><div class="fill" style="--value:79.09%"></div></div><span>79.09%</span></div>
+            <div class="bar"><span>Balanced acc.</span><div class="track"><div class="fill" style="--value:67.33%"></div></div><span>67.33%</span></div>
+            <div class="bar"><span>F1 macro</span><div class="track"><div class="fill" style="--value:65.04%"></div></div><span>65.04%</span></div>
+            <div class="bar"><span>F1 weighted</span><div class="track"><div class="fill" style="--value:79.57%"></div></div><span>79.57%</span></div>
+            <div class="bar"><span>Kappa</span><div class="track"><div class="fill" style="--value:86.16%"></div></div><span>86.16%</span></div>
+            <div class="bar"><span>ROC AUC</span><div class="track"><div class="fill" style="--value:92.01%"></div></div><span>92.01%</span></div>
+          </div>
+        </article>
+        <article class="card chart-card">
+          <div class="chart-copy">
+            <span class="section-kicker">Matriz de confusión</span>
+            <h3>Mejor desempeño en clase sin retinopatía</h3>
+            <p>Las clases intermedias y avanzadas conservan mayor dificultad por similitud visual y desbalance de datos.</p>
+          </div>
+          <img src="informe_imagenes/normalized_confusion_matrix.png" alt="Matriz de confusión normalizada">
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">Evidencias visuales</span>
+          <h2>Imágenes del análisis y entrenamiento</h2>
+        </div>
+        <p>Estas figuras corresponden a los resultados y auditorías generadas para el modelo final documentado en el informe.</p>
+      </div>
+      <div class="visual-gallery">
+        <article class="card figure-card">
+          <div class="caption">
+            <span class="section-kicker">Datos</span>
+            <h3>Distribución de clases</h3>
+            <p>Permite observar el desbalance natural del dataset original.</p>
+          </div>
+          <img src="informe_imagenes/class_distribution.png" alt="Distribución de clases del dataset">
+        </article>
+        <article class="card figure-card">
+          <div class="caption">
+            <span class="section-kicker">Métricas</span>
+            <h3>Métricas por clase</h3>
+            <p>Compara precisión, recall y F1 para cada nivel de severidad.</p>
+          </div>
+          <img src="informe_imagenes/class_metrics.png" alt="Métricas por clase">
+        </article>
+        <article class="card figure-card">
+          <div class="caption">
+            <span class="section-kicker">Confusión</span>
+            <h3>Matriz absoluta</h3>
+            <p>Muestra aciertos y errores con conteos reales del conjunto de prueba.</p>
+          </div>
+          <img src="informe_imagenes/confusion_matrix.png" alt="Matriz de confusión absoluta">
+        </article>
+        <article class="card figure-card">
+          <div class="caption">
+            <span class="section-kicker">Confusión</span>
+            <h3>Matriz normalizada</h3>
+            <p>Resume el comportamiento relativo del modelo por cada clase real.</p>
+          </div>
+          <img src="informe_imagenes/normalized_confusion_matrix.png" alt="Matriz de confusión normalizada">
+        </article>
+        <article class="card figure-card">
+          <div class="caption">
+            <span class="section-kicker">Entrenamiento</span>
+            <h3>Curva de accuracy</h3>
+            <p>Evolución de la exactitud durante el proceso de entrenamiento.</p>
+          </div>
+          <img src="informe_imagenes/training_accuracy.png" alt="Curva de accuracy">
+        </article>
+        <article class="card figure-card">
+          <div class="caption">
+            <span class="section-kicker">Entrenamiento</span>
+            <h3>Curva de pérdida</h3>
+            <p>Seguimiento de la función de pérdida durante el entrenamiento.</p>
+          </div>
+          <img src="informe_imagenes/training_loss.png" alt="Curva de pérdida">
+        </article>
+        <article class="card figure-card">
+          <div class="caption">
+            <span class="section-kicker">Entrenamiento</span>
+            <h3>F1 macro</h3>
+            <p>Indicador útil para evaluar clases desbalanceadas.</p>
+          </div>
+          <img src="informe_imagenes/training_f1_macro.png" alt="Curva F1 macro">
+        </article>
+        <article class="card figure-card">
+          <div class="caption">
+            <span class="section-kicker">Entrenamiento</span>
+            <h3>Kappa cuadrático</h3>
+            <p>Evalúa errores considerando la distancia ordinal entre grados clínicos.</p>
+          </div>
+          <img src="informe_imagenes/training_kappa.png" alt="Curva kappa cuadrático">
+        </article>
+        <article class="card figure-card">
+          <div class="caption">
+            <span class="section-kicker">Entrenamiento</span>
+            <h3>Balanced accuracy</h3>
+            <p>Ayuda a leer el desempeño cuando las clases no tienen la misma cantidad de imágenes.</p>
+          </div>
+          <img src="informe_imagenes/training_balanced_accuracy.png" alt="Curva balanced accuracy">
+        </article>
+        <article class="card figure-card">
+          <div class="caption">
+            <span class="section-kicker">Política</span>
+            <h3>Confianza y cobertura</h3>
+            <p>Visualiza el equilibrio entre aceptar predicciones y mantener seguridad operacional.</p>
+          </div>
+          <img src="informe_imagenes/confidence_coverage.png" alt="Relación entre confianza y cobertura">
+        </article>
+      </div>
+    </section>
+
+    <section class="section policy">
+      <article class="card policy-main">
+        <span class="section-kicker">Política de seguridad</span>
+        <h2>Solo se acepta automáticamente lo más confiable</h2>
+        <strong>39.82%</strong>
+        <p>
+          Cobertura aceptada automáticamente. En ese subconjunto, el accuracy sube a 97.72%
+          y el error grande baja a 0.91%.
+        </p>
+      </article>
+      <article class="card">
+        <span class="section-kicker">Decision operacional</span>
+        <h3>Accept, review o reject</h3>
+        <p>
+          La aplicación evalúa confianza, diferencia entre clases, calidad, nitidez, contraste y cobertura retinal.
+          Si la orientación no es suficientemente estable, solicita revisión profesional o nueva captura.
+        </p>
+        <div class="bars">
+          <div class="bar"><span>Aceptadas</span><div class="track"><div class="fill" style="--value:39.82%"></div></div><span>219</span></div>
+          <div class="bar"><span>Revisión</span><div class="track"><div class="fill" style="--value:1.45%"></div></div><span>8</span></div>
+          <div class="bar"><span>No automáticas</span><div class="track"><div class="fill" style="--value:58.73%"></div></div><span>323</span></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">Implementacion</span>
+          <h2>Arquitectura del sistema web</h2>
+        </div>
+        <p>El despliegue se organiza como una app clínica ligera, con modelo incluido y backend de inferencia.</p>
+      </div>
+      <div class="grid cols-4">
+        <article class="card problem-card">
+          <div class="icon-badge">UI</div>
+          <div><h3>Frontend</h3><p>HTML, CSS y JavaScript para login, pacientes, evaluación e historial local.</p></div>
+        </article>
+        <article class="card problem-card">
+          <div class="icon-badge">API</div>
+          <div><h3>Backend</h3><p>FastAPI recibe imágenes, ejecuta inferencia y devuelve resultados estructurados.</p></div>
+        </article>
+        <article class="card problem-card">
+          <div class="icon-badge">AI</div>
+          <div><h3>Modelo</h3><p>Checkpoint PyTorch `best_retina_model.pth` cargado una vez en memoria.</p></div>
+        </article>
+        <article class="card problem-card">
+          <div class="icon-badge">GC</div>
+          <div><h3>Grad-CAM</h3><p>Mapa de atención como apoyo visual, no como explicación clínica definitiva.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>
+        RetinaAI es una herramienta de asistencia optométrica. Su salida debe interpretarse con criterio profesional,
+        validación de imagen y seguimiento clínico responsable.
+      </p>
+      <button class="print-btn" onclick="window.print()">Imprimir / Guardar PDF</button>
+    </footer>
+  </main>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      }
+    }, { threshold: .12 });
+    document.querySelectorAll('.card, .flow-step, .hero-main, .hero-side').forEach((el) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(12px)';
+      el.style.transition = 'opacity .5s ease, transform .5s ease';
+      observer.observe(el);
+    });
+    const style = document.createElement('style');
+    style.textContent = '.visible{opacity:1!important;transform:none!important}';
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
